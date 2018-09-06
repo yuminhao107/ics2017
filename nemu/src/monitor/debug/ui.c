@@ -38,6 +38,43 @@ static int cmd_q(char *args) {
 
 static int cmd_help(char *args);
 
+static int cmd_si(char *args) {
+  /*TODO*/
+	if (args==NULL){
+		cpu_exec(1);
+	}else{
+		long step=atol(args);
+		cpu_exec(step);
+	}
+
+  return 0;
+}
+
+static int cmd_info(char *args) {
+  /*TODO*/
+  return 0;
+}
+
+static int cmd_p(char *args) {
+  /*TODO*/
+  return 0;
+}
+
+static int cmd_x(char *args) {
+  /*TODO*/
+  return 0;
+}
+
+static int cmd_w(char *args) {
+  /*TODO*/
+  return 0;
+}
+
+static int cmd_d(char *args) {
+  /*TODO*/
+  return 0;
+}
+
 static struct {
   char *name;
   char *description;
@@ -46,6 +83,12 @@ static struct {
   { "help", "Display informations about all supported commands", cmd_help },
   { "c", "Continue the execution of the program", cmd_c },
   { "q", "Exit NEMU", cmd_q },
+  {"si","execute n steps of the program",cmd_si},
+  {"info","display informaion from regsiters",cmd_info},
+  {"p","calculate value of an expression",cmd_p},
+  {"x","scan the memery",cmd_x},
+  {"w","add watch point",cmd_w},
+  {"d","delete watch point",cmd_d},
 
   /* TODO: Add more commands */
 
