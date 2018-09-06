@@ -51,7 +51,14 @@ static int cmd_si(char *args) {
 }
 
 static int cmd_info(char *args) {
-  /*TODO*/
+  if (args==NULL) return 0;
+  char *arg=strtok(args," ");
+  if (arg==NULL) return 0;
+  if (strcmp(arg,"r")){
+	  for (int i=0;i<8;i++){
+		  printf("%x",reg_l(i));
+	  }
+  }
   return 0;
 }
 
