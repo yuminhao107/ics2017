@@ -56,7 +56,7 @@ static int cmd_info(char *args) {
   if (arg==NULL) return 0;
   if (strcmp(arg,"r")==0){
 	  for (int i=0;i<8;i++){
-		  printf("%x",reg_l(i));
+		  printf("0x%x\n",reg_l(i));
 	  }
   }
   return 0;
