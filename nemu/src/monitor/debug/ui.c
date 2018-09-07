@@ -75,8 +75,9 @@ static int cmd_x(char *args) {
 	if (str_num==NULL) return 0;
 	char *str_base=strtok(NULL," ");
 	if (str_base==NULL) return 0;
-	uint32_t num=atol(str_num);
-	uint32_t base=atol(str_base);
+	char* str;
+	uint32_t num=strtol(str_num,&str,0);
+	uint32_t base=strtol(str_base,&str,0);
 	for (uint32_t  i=0;i<num;i++){
 		uint32_t addr=base+i*4;
 		printf("0x%x: 0x%x\n",addr,vaddr_read(addr,4));
