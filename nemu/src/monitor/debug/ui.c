@@ -70,9 +70,10 @@ static int cmd_p(char *args) {
 static int cmd_x(char *args) {
   /*TODO*/
 	if (args==NULL) return 0;
+	
 	char *str_num=strtok(args," ");
 	if (str_num==NULL) return 0;
-	char *str_base=strtok(args," ");
+	char *str_base=strtok(NULL," ");
 	if (str_base==NULL) return 0;
 	uint32_t num=atol(str_num);
 	uint32_t base=atol(str_base);
