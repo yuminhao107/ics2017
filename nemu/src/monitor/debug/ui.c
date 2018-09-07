@@ -69,6 +69,17 @@ static int cmd_p(char *args) {
 
 static int cmd_x(char *args) {
   /*TODO*/
+	if (args==NULL) return 0;
+	char *str_num=strtok(args," ");
+	if (str_num==NULL) return 0;
+	char *str_base=strtok(args," ");
+	if (str_base==NULL) return 0;
+	long num=atol(str_num);
+	long base=atol(str_base);
+	for (int i=0;i<num;i++){
+		printf("0x%x\n",vaddr_read(base+num*4,4));
+	}
+	
   return 0;
 }
 
