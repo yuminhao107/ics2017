@@ -74,10 +74,11 @@ static int cmd_x(char *args) {
 	if (str_num==NULL) return 0;
 	char *str_base=strtok(args," ");
 	if (str_base==NULL) return 0;
-	long num=atol(str_num);
-	long base=atol(str_base);
-	for (int i=0;i<num;i++){
-		printf("0x%x\n",vaddr_read(base+num*4,4));
+	uint32_t num=atol(str_num);
+	uint32_t base=atol(str_base);
+	for (uint32_t  i=0;i<num;i++){
+		uint32_t addr=base+i*4;
+		printf("0x%x: 0x%x\n",addr,vaddr_read(addr,4));
 	}
 	
   return 0;
