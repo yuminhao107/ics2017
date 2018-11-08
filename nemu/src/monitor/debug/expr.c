@@ -33,6 +33,7 @@ static struct rule {
 
   {"==", TK_EQ}         // equal
 };
+int order[128];
 
 #define NR_REGEX (sizeof(rules) / sizeof(rules[0]) )
 
@@ -105,6 +106,41 @@ static bool make_token(char *e) {
   return true;
 }
 
+bool check_parentheses(p,q){
+	if (tokens[p].type=='(' && tokens[q].type==')'){
+		int count=0;
+		for (int i=p;i<=q;i++){
+			if (tokens[i].type=='(') ++count;
+			if (tokens[i].type==')') --count;
+			if (count<0) {
+				return false;
+			}
+		}
+		if (count==0) return true;
+		else return false;
+	}
+	return false;
+}
+int dominantOperator(p,q){
+	int opOrder=1;
+	int count=0;
+	int dominant=-1;
+	for (int i=p;i<=q;i++){
+		switch(tokens[i].type){
+			case '(':++count;
+			case ')':--count;
+			case TK_NUM:continue;
+			default: if (older[tokens[i].type]<=opOrder && count==0){
+						 opOrder=older[tokens[i].type];
+						 dominant=i;
+					 }
+		}
+		return dominant;
+	}
+}
+
+
+
 uint32_t expr(char *e, bool *success) {
   if (!make_token(e)) {
     *success = false;
@@ -112,6 +148,10 @@ uint32_t expr(char *e, bool *success) {
   }
 
   /* TODO: Insert codes to evaluate the expression. */
+  older['+']=-2;
+  older['-']=-2;
+  older['*']=-1;
+  older['/']=-1;
   TODO();
 
   return 0;
